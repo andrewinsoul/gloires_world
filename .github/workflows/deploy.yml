@@ -5,19 +5,37 @@ on:
     branches:
       - master
 
+concurrency:
+  group: deploy-production
+  cancel-in-progress: true
+
 jobs:
   deploy:
+    name: Deploy
     runs-on: ubuntu-latest
+
+    env:
+      MIX_ENV: prod
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install Elixir
+      - name: Setup Erlang & Elixir
         uses: erlef/setup-beam@v1
         with:
-          otp-version: "28"
-          elixir-version: "1.19"
+          otp-version: "28.0.1"
+          elixir-version: "1.19.5"
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Hex & Rebar
+        run: |
+          mix local.hex --force
+          mix local.rebar --force
 
       - name: Cache dependencies
         uses: actions/cache@v4
@@ -25,26 +43,38 @@ jobs:
           path: |
             deps
             _build
-          key: mix-${{ runner.os }}-${{ hashFiles('mix.lock') }}
+            ~/.hex
+            ~/.mix
+          key: ${{ runner.os }}-mix-${{ hashFiles('mix.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-mix-
 
       - name: Install dependencies
-        run: mix deps.get
+        run: mix deps.get --only prod
 
       - name: Compile
         run: mix compile --warnings-as-errors
 
       - name: Install Gigalixir CLI
         run: |
-          python3 -m pip install --upgrade pip
-          python3 -m pip install gigalixir
+          python -m pip install --upgrade pip
+          python -m pip install gigalixir
 
-      - name: Login to Gigalixir
+      - name: Configure Git
         run: |
-          mix gigalixir.login \
-            --email ${{ secrets.GIGALIXIR_EMAIL }} \
-            --password ${{ secrets.GIGALIXIR_API_KEY }}
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Add Gigalixir remote
+        env:
+          GIGALIXIR_EMAIL: ${{ secrets.GIGALIXIR_EMAIL }}
+          GIGALIXIR_API_KEY: ${{ secrets.GIGALIXIR_API_KEY }}
+        run: |
+          git remote remove gigalixir 2>/dev/null || true
+
+          git remote add gigalixir \
+            https://${GIGALIXIR_EMAIL}:${GIGALIXIR_API_KEY}@git.gigalixir.com/gloire-world.git
 
       - name: Deploy
         run: |
-          git remote add gigalixir https://git.gigalixir.com/gloire-world.git
-          git push gigalixir HEAD:refs/heads/master --force
+          git push gigalixir HEAD:master
