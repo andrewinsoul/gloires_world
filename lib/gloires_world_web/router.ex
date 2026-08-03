@@ -16,8 +16,8 @@ defmodule GloiresWorldWeb.Router do
 
   scope "/", GloiresWorldWeb do
     pipe_through :browser
-
-    get "/", PageController, :home
+    post "/contact", ContactController, :create
+    live "/", HomeLive
   end
 
   # Other scopes may use custom stacks.

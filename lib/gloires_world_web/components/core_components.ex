@@ -261,7 +261,7 @@ defmodule GloiresWorldWeb.CoreComponents do
           id={@id}
           name={@name}
           class={[
-            @class || "w-full textarea",
+            @class || "w-full rounded-2xl border border-zinc-300 px-6 py-4 outline-none transition focus:border-[#C97C83] focus:ring-2 focus:ring-[#C97C83]/20",
             @errors != [] && (@error_class || "textarea-error")
           ]}
           {@rest}
@@ -284,7 +284,7 @@ defmodule GloiresWorldWeb.CoreComponents do
           id={@id}
           value={Phoenix.HTML.Form.normalize_value(@type, @value)}
           class={[
-            @class || "w-full input",
+            @class || "w-full rounded-2xl border border-zinc-300 px-6 py-4 outline-none transition focus:border-[#C97C83] focus:ring-2 focus:ring-[#C97C83]/20",
             @errors != [] && (@error_class || "input-error")
           ]}
           {@rest}

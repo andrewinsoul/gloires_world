@@ -3,11 +3,22 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta
+      name="description"
+      content="Gloire's World creates elegant bespoke fashion for women, from corporate wear to bridal couture."
+    />
+    <meta property="og:title" content="Gloire's World" />
+    <meta
+      property="og:description"
+      content="Elegant fashion. Timeless craftsmanship."
+    />
+    <meta property="og:type" content="website" />
+
     <meta name="csrf-token" content={get_csrf_token()} />
-    <.live_title default="GloiresWorld" suffix=" · Phoenix Framework">
-      {assigns[:page_title]}
-    </.live_title>
+    <title>{assigns[:page_title] || "Gloire's World • Fashion Designer"}</title>
     <link phx-track-static rel="stylesheet" href={~p"/assets/css/app.css"} />
+    <link rel="icon" type="image/png" href={~p"/images/branding/favicon.png"} />
     <script defer phx-track-static type="text/javascript" src={~p"/assets/js/app.js"}>
     </script>
     <script>
@@ -30,7 +41,7 @@
       })();
     </script>
   </head>
-  <body>
+  <body class="bg-[#FAF7F4] text-zinc-900 antialiased">
     {@inner_content}
   </body>
 </html>

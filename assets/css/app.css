@@ -1,5 +1,6 @@
 /* See the Tailwind configuration guide for advanced usage
    https://tailwindcss.com/docs/configuration */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700;800&display=swap");
 
 @import "tailwindcss" source(none);
 @source "../css";
@@ -100,6 +101,49 @@
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 /* Make LiveView wrapper divs transparent for layout */
-[data-phx-session], [data-phx-teleported-src] { display: contents }
+[data-phx-session],
+[data-phx-teleported-src] {
+  display: contents;
+}
 
 /* This file is for your main application CSS */
+
+body {
+  font-family: "Inter", sans-serif;
+}
+
+.font-display {
+  font-family: "Playfair Display", serif;
+}
+
+:root {
+  --background: #faf7f4;
+  --primary: #c97c83;
+  --text: #222222;
+  --border: #e8ded7;
+  /* Radius */
+  --radius: 1rem;
+
+  /* Shadow */
+  --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--text);
+  font-family: "Inter", sans-serif;
+}
+
+.font-display {
+  font-family: "Playfair Display", serif;
+}
+
+.container {
+  max-width: 80rem;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
