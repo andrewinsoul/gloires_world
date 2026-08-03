@@ -35,7 +35,8 @@ jobs:
 
       - name: Install Gigalixir CLI
         run: |
-          mix archive.install hex gigalixir --force
+          python3 -m pip install --upgrade pip
+          python3 -m pip install gigalixir
 
       - name: Login to Gigalixir
         run: |
