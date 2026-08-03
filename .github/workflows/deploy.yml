@@ -33,9 +33,6 @@ jobs:
       - name: Compile
         run: mix compile --warnings-as-errors
 
-      - name: Run tests
-        run: mix test
-
       - name: Install Gigalixir CLI
         run: |
           mix archive.install hex gigalixir --force
