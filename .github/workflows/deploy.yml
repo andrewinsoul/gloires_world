@@ -1,0 +1,52 @@
+name: Deploy to Gigalixir
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Elixir
+        uses: erlef/setup-beam@v1
+        with:
+          otp-version: "28"
+          elixir-version: "1.19"
+
+      - name: Cache dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            deps
+            _build
+          key: mix-${{ runner.os }}-${{ hashFiles('mix.lock') }}
+
+      - name: Install dependencies
+        run: mix deps.get
+
+      - name: Compile
+        run: mix compile --warnings-as-errors
+
+      - name: Run tests
+        run: mix test
+
+      - name: Install Gigalixir CLI
+        run: |
+          mix archive.install hex gigalixir --force
+
+      - name: Login to Gigalixir
+        run: |
+          mix gigalixir.login \
+            --email ${{ secrets.GIGALIXIR_EMAIL }} \
+            --password ${{ secrets.GIGALIXIR_API_KEY }}
+
+      - name: Deploy
+        run: |
+          git remote add gigalixir https://git.gigalixir.com/gloire-world.git
+          git push gigalixir HEAD:refs/heads/master --force
