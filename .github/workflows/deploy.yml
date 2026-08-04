@@ -20,6 +20,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Erlang & Elixir
         uses: erlef/setup-beam@v1
@@ -77,4 +79,4 @@ jobs:
 
       - name: Deploy
         run: |
-          git push gigalixir HEAD:master
+          git push --force gigalixir HEAD:master
