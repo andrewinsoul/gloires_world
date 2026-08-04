@@ -1,5 +1,12 @@
 import Config
 
+if config_env() == :dev and File.exists?(".env") do
+  Dotenvy.source!(".env")
+  |> Enum.each(fn {key, value} ->
+    System.put_env(key, value)
+  end)
+end
+
 # config/runtime.exs is executed for all environments, including
 # during releases. It is executed after compilation and before the
 # system starts, so it is typically used to load production configuration
@@ -22,6 +29,12 @@ end
 
 config :gloires_world, GloiresWorldWeb.Endpoint,
   http: [port: String.to_integer(System.get_env("PORT", "4000"))]
+
+config :gloires_world, GloiresWorld.Mailer,
+  adapter: Swoosh.Adapters.Brevo,
+  api_key: System.fetch_env!("BREVO_API_KEY")
+
+config :swoosh, :api_client, Swoosh.ApiClient.Req
 
 if config_env() == :prod do
   database_url =

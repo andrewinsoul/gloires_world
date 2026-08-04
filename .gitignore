@@ -35,3 +35,4 @@ gloires_world-*.tar
 npm-debug.log
 /assets/node_modules/
 
+.env

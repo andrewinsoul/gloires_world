@@ -4,6 +4,15 @@ defmodule GloiresWorldWeb.Landing do
   attr :mobile_menu_open, :boolean, default: false
 
   def navbar(assigns) do
+    message =
+      URI.encode("""
+      Hello Gloire's Stitches 👋
+
+      I saw your website and I'd like to book a consultation for a custom outfit.
+      """)
+
+    assigns = assign(assigns, :message, message)
+
     ~H"""
     <header class="fixed top-0 left-0 right-0 z-50 bg-[#faf7f4]/90 backdrop-blur-md border-b border-neutral-200">
       <div class="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-8">
@@ -53,8 +62,10 @@ defmodule GloiresWorldWeb.Landing do
     <!-- CTA -->
 
         <a
-          href="#contact"
-          class="hidden rounded-full bg-[#C97C83] px-6 py-3 text-sm font-medium text-white transition hover:scale-105 hover:bg-[#b86d74] lg:inline-flex"
+          href={"https://api.whatsapp.com/send?phone=2347063336186&text=#{@message}"}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="rounded-full border border-zinc-300 bg-white/70 px-8 py-4 backdrop-blur transition hover:bg-white"
         >
           Book Appointment
         </a>
@@ -102,6 +113,15 @@ defmodule GloiresWorldWeb.Landing do
   end
 
   def hero(assigns) do
+    message =
+      URI.encode_www_form("""
+      Hello Gloire's Stitches 👋
+
+      I saw your website and I'd like to book a consultation for a custom outfit.
+      """)
+
+    assigns = assign(assigns, :message, message)
+
     ~H"""
     <section
       id="hero"
@@ -115,7 +135,7 @@ defmodule GloiresWorldWeb.Landing do
       />
 
     <!-- Overlay -->
-      <div class="absolute inset-0 bg-white/45"></div>
+      <div class="absolute inset-0 bg-gray-200 opacity-45"></div>
 
     <!-- Content -->
       <div class="relative z-10 mx-auto flex min-h-screen max-w-7xl items-center px-6">
@@ -142,7 +162,9 @@ defmodule GloiresWorldWeb.Landing do
             </a>
 
             <a
-              href="#contact"
+              href={"https://wa.me/2347063336186?text=#{@message}"}
+              target="_blank"
+              rel="noopener noreferrer"
               class="rounded-full border border-zinc-300 bg-white/70 px-8 py-4 backdrop-blur transition hover:bg-white"
             >
               Book Appointment
@@ -197,7 +219,7 @@ defmodule GloiresWorldWeb.Landing do
                 Corporate Elegance
               </h3>
 
-              <p class="mt-2 text-zinc-600">
+              <p class="mt-2 leading-relaxed text-zinc-600 px-1">
                 Sophisticated tailoring designed for confident women.
               </p>
             </div>
@@ -216,7 +238,7 @@ defmodule GloiresWorldWeb.Landing do
                 African Prints
               </h3>
 
-              <p class="mt-2 text-zinc-600">
+              <p class="mt-2 text-zinc-600 px-1">
                 Contemporary African fashion with timeless craftsmanship.
               </p>
             </div>
@@ -235,7 +257,7 @@ defmodule GloiresWorldWeb.Landing do
                 Evening Couture
               </h3>
 
-              <p class="mt-2 text-zinc-600">
+              <p class="mt-2 text-zinc-600 px-1">
                 Luxury evening wear made for unforgettable moments.
               </p>
             </div>

@@ -3,20 +3,20 @@ defmodule GloiresWorld.ContactMailer do
 
   def enquiry(name, email, phone, message) do
     new()
-    |> to({"Gloire's World", "hello@gloiresworld.com"})
-    |> from({"Website", "noreply@gloiresworld.com"})
+    |> to({"Gloire's World", "ucheglory55@gmail.com"})
+    |> from({"G'loire Stitches", "ucheglory55@gmail.com"})
     |> reply_to({name, email})
     |> subject("New enquiry from #{name}")
-    |> text_body("""
-    Name: #{name}
+    |> html_body("""
+    <h2>New Contact Request</h2>
 
-    Email: #{email}
+    <p><strong>Name:</strong> #{name}</p>
+    <p><strong>Email:</strong> #{email}</p>
+    <p><strong>Phone:</strong> #{phone}</p>
 
-    Phone: #{phone}
+    <hr>
 
-    Message:
-
-    #{message}
+    <p>#{message}</p>
     """)
   end
 end
