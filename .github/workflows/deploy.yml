@@ -77,4 +77,4 @@ jobs:
 
       - name: Deploy
         run: |
-          git push --force-with-lease gigalixir HEAD:master
+          git push --force gigalixir HEAD:master
