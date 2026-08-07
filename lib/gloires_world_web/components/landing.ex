@@ -21,13 +21,13 @@ defmodule GloiresWorldWeb.Landing do
         <a href="#" class="flex items-center gap-3">
           <img
             src={~p"/images/branding/favicon.png"}
-            alt="Gloire's World"
+            alt="Gloire's Stitches"
             class="h-10 w-10 rounded-full"
           />
 
           <div class="leading-none">
             <p class="font-display text-2xl font-semibold tracking-wide">
-              Gloire's World
+              Gloire's Stitches
             </p>
 
             <p class="text-xs uppercase tracking-[0.35rem] text-neutral-500">
@@ -141,7 +141,7 @@ defmodule GloiresWorldWeb.Landing do
       <div class="relative z-10 mx-auto flex min-h-screen max-w-7xl items-center px-6">
         <div class="max-w-2xl">
           <p class="mb-4 uppercase tracking-[0.45rem] text-sm text-[#C97C83]">
-            GLOIRE'S WORLD
+            GLOIRE'S STITCHES
           </p>
 
           <h1 class="font-display text-6xl font-semibold leading-tight text-zinc-900 lg:text-8xl">
@@ -323,7 +323,7 @@ defmodule GloiresWorldWeb.Landing do
           </h2>
 
           <p class="mt-8 text-lg leading-8 text-zinc-600">
-            Welcome to Gloire's World, where every outfit is designed with
+            Welcome to G'loire Stitches, where every outfit is designed with
             intention, precision and elegance.
           </p>
 
@@ -617,7 +617,7 @@ defmodule GloiresWorldWeb.Landing do
               </h3>
 
               <p class="leading-8 text-zinc-600">
-                Gloire's World Fashion House<br /> Abuja, Nigeria
+                G'loire Stitches Fashion House<br /> Port Harcourt, Nigeria
               </p>
             </div>
 
@@ -683,13 +683,13 @@ defmodule GloiresWorldWeb.Landing do
             <div class="flex items-center gap-4">
               <img
                 src={~p"/images/branding/favicon.png"}
-                alt="Gloire's World"
+                alt="G'loire Stitches"
                 class="h-12 w-12 rounded-full"
               />
 
               <div>
                 <h2 class="font-display text-3xl text-white">
-                  Gloire's World
+                  G'loire Stitches
                 </h2>
 
                 <p class="text-sm uppercase tracking-[0.35rem] text-zinc-500">
@@ -699,7 +699,7 @@ defmodule GloiresWorldWeb.Landing do
             </div>
 
             <p class="mt-8 max-w-lg leading-8 text-zinc-400">
-              Gloire's World creates elegant bespoke fashion that celebrates
+              G'loire Stitches creates elegant bespoke fashion that celebrates
               confidence, individuality and timeless beauty. Every outfit is
               thoughtfully designed to make you feel your absolute best.
             </p>
@@ -772,7 +772,7 @@ defmodule GloiresWorldWeb.Landing do
 
         <div class="flex flex-col items-center justify-between gap-6 lg:flex-row">
           <p class="text-sm text-zinc-500">
-            © {Date.utc_today().year} Gloire's World. All rights reserved.
+            © {Date.utc_today().year} G'loire Stitches. All rights reserved.
           </p>
 
           <div class="flex gap-8">

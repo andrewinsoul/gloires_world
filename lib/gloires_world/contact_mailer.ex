@@ -3,7 +3,7 @@ defmodule GloiresWorld.ContactMailer do
 
   def enquiry(name, email, phone, message) do
     new()
-    |> to({"Gloire's World", "ucheglory55@gmail.com"})
+    |> to({"Gloire's Stitches", "ucheglory55@gmail.com"})
     |> from({"G'loire Stitches", "ucheglory55@gmail.com"})
     |> reply_to({name, email})
     |> subject("New enquiry from #{name}")
