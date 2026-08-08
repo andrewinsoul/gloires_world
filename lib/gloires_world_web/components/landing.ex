@@ -1,9 +1,7 @@
 defmodule GloiresWorldWeb.Landing do
   use GloiresWorldWeb, :html
 
-  attr :mobile_menu_open, :boolean, default: false
-
-  def navbar(assigns) do
+  defp whatsapp_msg() do
     message =
       URI.encode("""
       Hello Gloire's Stitches 👋
@@ -11,12 +9,20 @@ defmodule GloiresWorldWeb.Landing do
       I saw your website and I'd like to book a consultation for a custom outfit.
       """)
 
+    message
+  end
+
+  attr :mobile_menu_open, :boolean, default: false
+
+  def navbar(assigns) do
+    message = whatsapp_msg()
+
     assigns = assign(assigns, :message, message)
 
     ~H"""
     <header class="fixed inset-x-0 top-0 z-50 border-b border-neutral-200 bg-[#faf7f4]/90 backdrop-blur-md">
       <div class="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 lg:px-8">
-
+        
     <!-- Logo -->
         <a href="#hero" class="flex items-center gap-3">
           <img
@@ -35,7 +41,7 @@ defmodule GloiresWorldWeb.Landing do
             </p>
           </div>
         </a>
-
+        
     <!-- Desktop Navigation -->
         <nav class="hidden items-center gap-10 lg:flex">
           <a href="#hero" class="transition hover:text-[#C97C83]">
@@ -58,7 +64,7 @@ defmodule GloiresWorldWeb.Landing do
             Contact
           </a>
         </nav>
-
+        
     <!-- Desktop CTA -->
         <a
           href={"https://api.whatsapp.com/send?phone=2347063336186&text=#{@message}"}
@@ -68,7 +74,7 @@ defmodule GloiresWorldWeb.Landing do
         >
           Book Appointment
         </a>
-
+        
     <!-- Mobile Actions -->
         <div class="flex items-center gap-3 lg:hidden">
           <button
@@ -98,7 +104,7 @@ defmodule GloiresWorldWeb.Landing do
           </button>
         </div>
       </div>
-
+      
     <!-- Mobile Menu -->
       <div
         :if={@mobile_menu_open}
@@ -168,12 +174,7 @@ defmodule GloiresWorldWeb.Landing do
   end
 
   def hero(assigns) do
-    message =
-      URI.encode_www_form("""
-      Hello Gloire's Stitches 👋
-
-      I saw your website and I'd like to book a consultation for a custom outfit.
-      """)
+    message = whatsapp_msg()
 
     assigns = assign(assigns, :message, message)
 
@@ -188,10 +189,10 @@ defmodule GloiresWorldWeb.Landing do
         alt=""
         class="absolute inset-0 h-full w-full object-cover object-[70%_55%] lg:object-[70%_0%]"
       />
-
+      
     <!-- Overlay -->
       <div class="absolute inset-0 bg-gray-200 opacity-45"></div>
-
+      
     <!-- Content -->
       <div class="relative z-10 mx-auto flex min-h-screen max-w-7xl items-center px-6">
         <div class="max-w-2xl">
@@ -238,7 +239,7 @@ defmodule GloiresWorldWeb.Landing do
       class="bg-white py-28"
     >
       <div class="mx-auto max-w-7xl px-6">
-
+        
     <!-- Heading -->
 
         <div class="mx-auto max-w-3xl text-center">
@@ -256,7 +257,7 @@ defmodule GloiresWorldWeb.Landing do
             beauty and individuality.
           </p>
         </div>
-
+        
     <!-- Gallery -->
 
         <div class="mt-20 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -282,7 +283,7 @@ defmodule GloiresWorldWeb.Landing do
             </div>
           </div>
         </div>
-
+        
     <!-- Button -->
 
         <div class="mt-20 text-center">
@@ -352,7 +353,7 @@ defmodule GloiresWorldWeb.Landing do
       class="bg-[#faf7f4] py-32"
     >
       <div class="mx-auto grid max-w-7xl items-center gap-20 px-6 lg:grid-cols-2">
-
+        
     <!-- LEFT IMAGE -->
 
         <div class="relative">
@@ -376,7 +377,7 @@ defmodule GloiresWorldWeb.Landing do
             </p>
           </div>
         </div>
-
+        
     <!-- RIGHT CONTENT -->
 
         <div>
@@ -436,7 +437,7 @@ defmodule GloiresWorldWeb.Landing do
       class="bg-white py-32"
     >
       <div class="mx-auto max-w-7xl px-6">
-
+        
     <!-- Heading -->
 
         <div class="mx-auto max-w-3xl text-center">
@@ -492,7 +493,7 @@ defmodule GloiresWorldWeb.Landing do
       class="bg-[#faf7f4] py-32"
     >
       <div class="mx-auto max-w-7xl px-6">
-
+        
     <!-- Heading -->
 
         <div class="mx-auto max-w-3xl text-center">
@@ -509,7 +510,7 @@ defmodule GloiresWorldWeb.Landing do
             and a commitment to making every client feel confident and elegant.
           </p>
         </div>
-
+        
     <!-- Features -->
 
         <div class="mt-20 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
@@ -572,7 +573,7 @@ defmodule GloiresWorldWeb.Landing do
     ~H"""
     <section id="contact" class="bg-[#FCF8F6] py-28">
       <div class="mx-auto max-w-7xl px-6 lg:px-8">
-
+        
     <!-- Heading -->
         <div class="mb-20 text-center">
           <p class="mb-4 text-sm font-semibold uppercase tracking-[0.4em] text-[#C97C83]">
@@ -588,10 +589,10 @@ defmodule GloiresWorldWeb.Landing do
             or ready-to-wear piece, we'd love to hear from you.
           </p>
         </div>
-
+        
     <!-- Two Columns -->
         <div class="grid gap-16 lg:grid-cols-2">
-
+          
     <!-- LEFT -->
           <div class="space-y-10">
             <div>
@@ -640,7 +641,7 @@ defmodule GloiresWorldWeb.Landing do
               </p>
             </div>
           </div>
-
+          
     <!-- RIGHT -->
           <div class="rounded-[32px] bg-white p-10 shadow-xl shadow-black/5">
             <.live_component
@@ -655,11 +656,14 @@ defmodule GloiresWorldWeb.Landing do
   end
 
   def footer(assigns) do
+    message = whatsapp_msg()
+    assigns = assign(assigns, :message, message)
+
     ~H"""
     <footer class="bg-zinc-950 text-zinc-300">
       <div class="mx-auto max-w-7xl px-6 py-20">
         <div class="grid gap-16 lg:grid-cols-4">
-
+          
     <!-- Brand -->
 
           <div class="lg:col-span-2">
@@ -687,7 +691,7 @@ defmodule GloiresWorldWeb.Landing do
               thoughtfully designed to make you feel your absolute best.
             </p>
           </div>
-
+          
     <!-- Quick Links -->
 
           <div>
@@ -727,7 +731,7 @@ defmodule GloiresWorldWeb.Landing do
               </li>
             </ul>
           </div>
-
+          
     <!-- Contact -->
 
           <div>
@@ -746,11 +750,11 @@ defmodule GloiresWorldWeb.Landing do
             </ul>
           </div>
         </div>
-
+        
     <!-- Divider -->
 
         <div class="my-12 h-px bg-zinc-800"></div>
-
+        
     <!-- Bottom -->
 
         <div class="flex flex-col items-center justify-between gap-6 lg:flex-row">
@@ -781,7 +785,9 @@ defmodule GloiresWorldWeb.Landing do
             </a>
 
             <a
-              href="#"
+              href={"https://api.whatsapp.com/send?phone=2347063336186&text=#{@message}"}
+              target="_blank"
+              rel="noopener noreferrer"
               class="hover:text-[#C97C83] transition"
             >
               WhatsApp
