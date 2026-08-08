@@ -26,12 +26,32 @@ defmodule GloiresWorldWeb.HomeLive do
     ]
 
     videos = [
-      %{id: "favor", poster: ~p"/favor.webp", src: ~p"/videos/favor.mp4"},
-      %{id: "aminat", poster: ~p"/aminat.webp", src: ~p"/videos/aminat.mp4"},
-      %{id: "flower-1", poster: ~p"/flower.webp", src: ~p"/videos/flower-1.mp4"},
-      %{id: "glory-1", poster: ~p"/glory-1.webp", src: ~p"/videos/glory-1.mp4"},
-      %{id: "glory-2", poster: ~p"/glory-2.webp", src: ~p"/videos/glory-2.mp4"},
-      %{id: "glory-3", poster: ~p"/glory-3.webp", src: ~p"/videos/glory-3.mp4"}
+      %{
+        id: "favor",
+        poster: ~p"/videos/thumbnails/favor.webp",
+        src: ~p"/videos/favor.mp4"
+      },
+      %{id: "aminat", poster: ~p"/videos/thumbnails/aminat.webp", src: ~p"/videos/aminat.mp4"},
+      %{
+        id: "flower-1",
+        poster: ~p"/videos/thumbnails/flower.webp",
+        src: ~p"/videos/flower-1.mp4"
+      },
+      %{
+        id: "glory-1",
+        poster: ~p"/videos/thumbnails/glory-1.webp",
+        src: ~p"/videos/glory-1.mp4"
+      },
+      %{
+        id: "glory-2",
+        poster: ~p"/videos/thumbnails/glory-2.webp",
+        src: ~p"/videos/glory-2.mp4"
+      },
+      %{
+        id: "glory-3",
+        poster: ~p"/videos/thumbnails/glory-3.webp",
+        src: ~p"/videos/glory-3.mp4"
+      }
     ]
 
     services = [
@@ -79,7 +99,7 @@ defmodule GloiresWorldWeb.HomeLive do
         title: "African Prints",
         description: "Contemporary African fashion with timeless craftsmanship.",
         image: ~p"/images/gallery/african_print.webp"
-      },
+      }
     ]
 
     {:ok,
