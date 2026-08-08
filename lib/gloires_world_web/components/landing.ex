@@ -184,7 +184,7 @@ defmodule GloiresWorldWeb.Landing do
     >
       <!-- Background Image -->
       <img
-        src={~p"/images/hero/hero.png"}
+        src={~p"/images/hero/hero.webp"}
         alt=""
         class="absolute inset-0 h-full w-full object-cover object-[70%_55%] lg:object-[70%_0%]"
       />
@@ -325,14 +325,18 @@ defmodule GloiresWorldWeb.Landing do
             class="overflow-hidden rounded-3xl shadow-lg"
           >
             <video
+              id={"video-#{video.id}"}
+              phx-hook="LazyVideo"
               class="aspect-[9/16] w-full object-cover"
               autoplay
               muted
               loop
               playsinline
               controls
+              preload="none"
+              poster={video.poster}
             >
-              <source src={video.src} type="video/mp4" />
+              <source data-src={video.src} type="video/mp4" />
             </video>
           </div>
         </div>
