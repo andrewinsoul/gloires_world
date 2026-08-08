@@ -5,7 +5,91 @@ defmodule GloiresWorldWeb.HomeLive do
 
   @impl true
   def mount(_params, _session, socket) do
-    {:ok, assign(socket, mobile_menu_open: false)}
+    portfolio_images = [
+      %{
+        title: "Corporate Elegance",
+        description: "Sophisticated tailoring designed for confident women.",
+        image: ~p"/images/gallery/aturuchi.jpg"
+      },
+      %{
+        title: "African Prints",
+        description:
+          "A beautifully tailored maxi dress featuring a vibrant African print and a flowing gathered skirt.",
+        image: ~p"/images/gallery/customer-1.jpg"
+      },
+      %{
+        title: "Evening Couture",
+        description:
+          "An elegant floor-length bodycon gown featuring handcrafted bead embellishments and a high halter neckline.",
+        image: ~p"/images/gallery/ceo.jpg"
+      }
+    ]
+
+    videos = [
+      %{src: ~p"/videos/favor.mp4"},
+      %{src: ~p"/videos/aminat.mp4"},
+      %{src: ~p"/videos/flower-1.mp4"},
+      %{src: ~p"/videos/glory-1.mp4"},
+      %{src: ~p"/videos/glory-2.mp4"},
+      %{src: ~p"/videos/glory-3.mp4"}
+    ]
+
+    services = [
+      %{
+        image: ~p"/images/gallery/glory.jpg",
+        title: "Corporate Wear",
+        description: "Designed to flatter, made to inspire confidence"
+      },
+      %{
+        image: ~p"/images/gallery/aminat.jpg",
+        title: "Bespoke Fashion",
+        description: "Elegance rooted in culture and crafted with care."
+      },
+      %{
+        image: ~p"/images/gallery/wedding-gown.jpg",
+        title: "Bridal Couture",
+        description: "Every bride deserves a dress as unforgettable as her story"
+      },
+      %{
+        image: ~p"/images/gallery/aminat-bubu-gown.jpg",
+        title: "Bubu Gown",
+        description: "Grace, beautifully draped in every detail."
+      },
+      %{
+        image: ~p"/images/gallery/customer-2.jpg",
+        title: "African Fashion",
+        description: "Rock your culture with confidence"
+      },
+      %{
+        image: ~p"/images/gallery/glory-special-occasion.jpg",
+        title: "Special Occasion",
+        description: "Classic style with a modern touch."
+      },
+      %{
+        image: ~p"/images/gallery/glory-street.jpg",
+        title: "Street Wear",
+        description: "Casual hoodies and shorts crafted for a bold, relaxed look."
+      },
+      %{
+        image: ~p"/images/gallery/aminat-dinner.jpg",
+        title: "Dinner Gown",
+        description: "Elegant dinner gowns tailored to make every entrance unforgettable."
+      },
+      %{
+        title: "African Prints",
+        description: "Contemporary African fashion with timeless craftsmanship.",
+        image: ~p"/images/gallery/african_print.png"
+      },
+    ]
+
+    {:ok,
+     assign(
+       socket,
+       mobile_menu_open: false,
+       portfolio_images: portfolio_images,
+       videos: videos,
+       services: services
+     )}
   end
 
   @impl true
@@ -20,9 +104,10 @@ defmodule GloiresWorldWeb.HomeLive do
 
     <main>
       <Landing.hero />
-      <Landing.portfolio />
+      <Landing.portfolio portfolio_images={@portfolio_images} />
+      <Landing.videos videos={@videos} />
       <Landing.about />
-      <Landing.services />
+      <Landing.services services={@services} />
       <Landing.testimonials />
       <Landing.contact />
       <Landing.footer />

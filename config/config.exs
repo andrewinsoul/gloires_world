@@ -8,7 +8,7 @@
 import Config
 
 config :gloires_world,
-  ecto_repos: [GloiresWorld.Repo],
+  # ecto_repos: [GloiresWorld.Repo],
   generators: [timestamp_type: :utc_datetime]
 
 # Configure the endpoint

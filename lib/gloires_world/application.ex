@@ -9,7 +9,6 @@ defmodule GloiresWorld.Application do
   def start(_type, _args) do
     children = [
       GloiresWorldWeb.Telemetry,
-      GloiresWorld.Repo,
       {DNSCluster, query: Application.get_env(:gloires_world, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: GloiresWorld.PubSub},
       # Start a worker by calling: GloiresWorld.Worker.start_link(arg)
